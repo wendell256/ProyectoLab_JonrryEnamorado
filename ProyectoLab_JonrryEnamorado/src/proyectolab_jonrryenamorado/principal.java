@@ -37,7 +37,7 @@ public class principal extends javax.swing.JFrame {
                 + "5)Toma las 10 palabras mas repetidas para sacar el top ten\n"
                 + "Todo esto lo muestra en tablas para ver los resultados."
                 + "Tip: Usar Archivos de Texto de tamaño moderado para mejor funcionamiento");
-        
+
     }
 
     /**
@@ -224,7 +224,7 @@ public class principal extends javax.swing.JFrame {
                 line = line.replace(" it ", " ");
                 line = line.replace(" it", " ");
                 line = line.replace(" with ", " ");
-                
+
                 line = line.replace(" to ", " ");
                 line = line.replace(" To ", " ");
                 line = line.replace(":", "");
@@ -307,87 +307,16 @@ public class principal extends javax.swing.JFrame {
                 }
             }
         }
-           ArrayList<word> nueva = new ArrayList(); 
+        ArrayList<word> nueva = new ArrayList();
         for (int i = 0; i < 10 && i < one.size(); i++) {
-            
+
             nueva.add(one.get(i));
-            
-                
+
         }
         one = nueva;
     }
 
-    public void comparartres(String n) {
-        Scanner sc = new Scanner(n);
-        sc.useDelimiter(" ");
-        ArrayList<String> pal = new ArrayList();
-        while (sc.hasNext()) {
-            pal.add(sc.next());
-        }
-        for (int i = 0; i < pal.size() - 2; i++) {
-            for (int j = 0; j < pal.size() - 1; j++) {
-                for (int k = 0; k < pal.size(); k++) {
-                    if ((i == j || i == k || j == k)) {
-
-                    }
-                    three.add(new word(pal.get(i) + " " + pal.get(j) + " " + pal.get(k), 0));
-                }
-            }
-        }
-        for (int i = 0; i < three.size(); i++) {
-            for (int j = 0; j < three.size(); j++) {
-                if (i == j) {
-
-                } else if (three.get(i).getWord().equals(three.get(j).getWord())) {
-                    three.remove(j);
-                    i = 0;
-                    j = 0;
-                }
-            }
-        }
-        for (int i = 0; i < pal.size() - 2; i++) {
-            for (int j = 0; j < three.size(); j++) {
-                if (three.get(j).getWord().equals(pal.get(i) + " " + pal.get(i + 1) + " " + pal.get(i + 2))) {
-                    three.get(j).setCount(three.get(j).getCount() + 1);
-                }
-
-            }
-        }
-    }
-
-    public void comparardos(String n) {
-
-        Scanner sc = new Scanner(n);
-        sc.useDelimiter(" ");
-        ArrayList<String> pal = new ArrayList();
-        while (sc.hasNext()) {
-            pal.add(sc.next());
-        }
-        for (int i = 0; i < pal.size() - 1; i++) {
-            for (int j = i + 1; j < pal.size(); j++) {
-                two.add(new word(pal.get(i) + " " + pal.get(j), 0));
-            }
-        }
-        for (int i = 0; i < two.size(); i++) {
-            for (int j = 0; j < two.size(); j++) {
-                if (i == j) {
-
-                } else if (two.get(i).getWord().equals(two.get(j).getWord())) {
-                    two.remove(j);
-                    i = 0;
-                    j = 0;
-                }
-            }
-        }
-        for (int i = 0; i < pal.size() - 1; i++) {
-            for (int j = 0; j < two.size(); j++) {
-                if (two.get(j).getWord().equals(pal.get(i) + " " + pal.get(i + 1))) {
-                    two.get(j).setCount(two.get(j).getCount() + 1);
-                }
-            }
-        }
-
-    }
+    
 
     public ArrayList<word> contar(ArrayList<word> n, ArrayList<word> m) {
         for (int i = 0; i < n.size(); i++) {
