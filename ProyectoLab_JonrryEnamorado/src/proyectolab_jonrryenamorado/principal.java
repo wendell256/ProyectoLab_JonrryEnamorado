@@ -265,10 +265,44 @@ public class principal extends javax.swing.JFrame {
                 Scanner sc = new Scanner(line);
                 sc.useDelimiter(" ");
                 while (sc.hasNext()) {
-                    one.add(new word(sc.next(), 0));
+                    word nueva = new word(sc.next(), 0);
+                    one.add(nueva);
+                    arraydos.add(nueva);
+                    
                 }
-                comparardos(line);
-                comparartres(line);
+                
+                for (int i = 0; i < arraydos.size(); i++) {
+                    for (int j = 0; j < arraydos.size(); j++) {
+                        if(i==j){
+                            
+                        }else{
+                            String word = arraydos.get(i).getWord() + " " + arraydos.get(j).getWord();
+                            two.add(new word(word,1));
+                        }
+                    }
+                }
+                
+                for (int i = 0; i < two.size(); i++) {
+                    for (int j = 0; j < two.size(); j++) {
+                        if(i==j){
+                            
+                        }else{
+                            String temp = two.get(i).getWord();
+                            Scanner sc2 = new Scanner(temp);
+                            while(sc2.hasNext()){
+                                String word1 = sc2.next();
+                                String word2 = sc2.next();
+                                temp = word2 + " " + word1;
+                            }
+                            if(two.get(j).getWord().equals(two.get(i).getWord()) || two.get(j).equals(temp)){
+                                two.get(i).setCount(two.get(i).getCount()+1);
+                                two.remove(j);
+                                j--;
+                            }
+                        }
+                    }
+                }
+                
 
             }
 
@@ -282,17 +316,23 @@ public class principal extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-
-        one = contar(one, one);
-
-        text((one), (DefaultTableModel) ta_una.getModel());
+        ArrayList<word> contuno = one;
+        contuno = contar(contuno, contuno);
+        
+        text((contuno), (DefaultTableModel) ta_una.getModel());
+        
         text((two), (DefaultTableModel) ta_dos.getModel());
         text((three), (DefaultTableModel) ta_tres.getModel());
         topten();
         text((one), (DefaultTableModel) ta_ten.getModel());
-
+        System.out.println(two);
     }//GEN-LAST:event_jButton1MouseClicked
 
+    public void doswords(){
+        
+    }
+    
+    
     public void topten() {
 
         for (int i = 0; i < one.size(); i++) {
