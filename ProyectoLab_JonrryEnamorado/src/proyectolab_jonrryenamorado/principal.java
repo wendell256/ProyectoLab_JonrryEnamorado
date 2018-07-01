@@ -69,7 +69,7 @@ public class principal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("PALABRAS");
 
-        jButton1.setText("SELECCIONAR ARCHIVO");
+        jButton1.setText("SELECCIONAR ARCHIVO DE TEXTO");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -150,7 +150,7 @@ public class principal extends javax.swing.JFrame {
                         .addGap(249, 249, 249)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
+                        .addGap(211, 211, 211)
                         .addComponent(jButton1)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
@@ -295,7 +295,7 @@ public class principal extends javax.swing.JFrame {
                             if(i==j||i==k||j==k||(i==j&&j==k)){
                                 
                             }else{
-                                String word = arraydos.get(i) + " " + arraydos.get(j) + " " + arraydos.get(k); 
+                                String word = arraydos.get(i).getWord() + " " + arraydos.get(j).getWord() + " " + arraydos.get(k).getWord(); 
                                 if(i==j-1 && j==k-1){
                                     three.add(new word(word, 0,true));
                                 }else{
@@ -319,8 +319,83 @@ public class principal extends javax.swing.JFrame {
  
         }
             
+                for (int i = 0; i < three.size(); i++) {
+                           
+                    for (int j = 0; j < three.size(); j++) {
+                        
+                        if (i == j) {
+
+                        } else {
+                            String temp = three.get(i).getWord();
+                            String temp2 ="";
+                            String temp3 ="";
+                            String temp4 ="";
+                            String temp5 ="";
+                            String temp6 ="";
+                            Scanner sc2 = new Scanner(temp);
+                            while (sc2.hasNext()) {
+                                String wordA = sc2.next();
+                                String wordB = sc2.next();
+                                String wordD = sc2.next();
+                                temp = wordD + " " + wordB + " " + wordA;
+                                temp2 = wordB + " " + wordD + " " + wordA;
+                                temp3 = wordA + " " + wordD + " " + wordB;
+                                temp4 = wordD + " " + wordA + " " + wordB;
+                                temp5 = wordB + " " + wordA + " " + wordD;
+                                
+                            }
+                            if (three.get(j).getWord().equals(three.get(i).getWord()) || (three.get(j).getWord().equals(temp)&&three.get(j).isAlapar())||(three.get(j).getWord().equals(temp2)&&three.get(j).isAlapar())||(three.get(j).getWord().equals(temp3)&&three.get(j).isAlapar())
+                                    || (three.get(j).getWord().equals(temp5)&&three.get(j).isAlapar()) || (three.get(j).getWord().equals(temp4)&&three.get(j).isAlapar())) {
+                                
+                                three.get(i).setCount(three.get(i).getCount() + 1);
+                                three.remove(j);
+                                j=0;
+                                i=0;
+                            }
+                        }
+                    }
+                }
+                //
+                for (int i = 0; i < three.size(); i++) {
+                           
+                    for (int j = 0; j < three.size(); j++) {
+                        
+                        if (i == j) {
+
+                        } else {
+                            String temp = three.get(i).getWord();
+                            String temp2 ="";
+                            String temp3 ="";
+                            String temp4 ="";
+                            String temp5 ="";
+                            String temp6 ="";
+                            Scanner sc2 = new Scanner(temp);
+                            while (sc2.hasNext()) {
+                                String wordA = sc2.next();
+                                String wordB = sc2.next();
+                                String wordD = sc2.next();
+                                temp = wordD + " " + wordB + " " + wordA;
+                                temp2 = wordB + " " + wordD + " " + wordA;
+                                temp3 = wordA + " " + wordD + " " + wordB;
+                                temp4 = wordD + " " + wordA + " " + wordB;
+                                temp5 = wordB + " " + wordA + " " + wordD;
+                                
+                            }
+                            if ((three.get(j).getWord().equals(temp))||(three.get(j).getWord().equals(temp2))||(three.get(j).getWord().equals(temp3))
+                                    || (three.get(j).getWord().equals(temp5)) || (three.get(j).getWord().equals(temp4))) {
+                                
+                                
+                                three.remove(j);
+                                j=0;
+                                i=0;
+                            }
+                        }
+                    }
+                }
+                
+                //
                 for (int i = 0; i < two.size(); i++) {
-                          System.out.println(two.get(i).getWord());  
+                           
                     for (int j = 0; j < two.size(); j++) {
                         
                         if (i == j) {
@@ -334,7 +409,7 @@ public class principal extends javax.swing.JFrame {
                                 temp = word2 + " " + word1;
                             }
                             if (two.get(j).getWord().equals(two.get(i).getWord()) || (two.get(j).getWord().equals(temp)&&two.get(j).isAlapar())) {
-                                //System.out.println(two.get(j).getWord()  + "== " + two.get(i).getWord() + "(" +two.get(i).getCount() + ")"+ " -----s " + two.get(j).getWord()+"==" + temp);
+                                
                                 two.get(i).setCount(two.get(i).getCount() + 1);
                                 two.remove(j);
                                 j=0;
@@ -343,6 +418,33 @@ public class principal extends javax.swing.JFrame {
                         }
                     }
                 }
+              
+                
+                 for (int i = 0; i < two.size(); i++) {
+                           
+                    for (int j = 0; j < two.size(); j++) {
+                        
+                        if (i == j) {
+
+                        } else {
+                            String temp = two.get(i).getWord();
+                            Scanner sc2 = new Scanner(temp);
+                            while (sc2.hasNext()) {
+                                String word1 = sc2.next();
+                                String word2 = sc2.next();
+                                temp = word2 + " " + word1;
+                            }
+                            if((two.get(j).getWord().equals(temp))){
+                                two.remove(j);
+                                j=0;
+                                i=0;
+                            }
+                        }
+                    }
+                }
+                
+                
+                
                 
                 
         ArrayList<word> contuno = one;
@@ -356,7 +458,7 @@ public class principal extends javax.swing.JFrame {
         text((three), (DefaultTableModel) ta_tres.getModel());
         topten();
         text((one), (DefaultTableModel) ta_ten.getModel());
-        System.out.println(two);
+       
     }//GEN-LAST:event_jButton1MouseClicked
 
     public void doswords() {
