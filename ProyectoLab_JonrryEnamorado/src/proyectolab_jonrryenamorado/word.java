@@ -12,7 +12,7 @@ package proyectolab_jonrryenamorado;
 public class word {
     private String word;
     private int count;
-
+    private boolean alapar;
     public word() {
     }
 
@@ -21,6 +21,20 @@ public class word {
         this.count = count;
     }
 
+    public word(String word, int count, boolean alapar) {
+        this.word = word;
+        this.count = count;
+        this.alapar = alapar;
+    }
+
+    public boolean isAlapar() {
+        return alapar;
+    }
+
+    public void setAlapar(boolean alapar) {
+        this.alapar = alapar;
+    }
+    
     public String getWord() {
         return word;
     }

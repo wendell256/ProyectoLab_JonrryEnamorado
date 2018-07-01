@@ -29,14 +29,14 @@ public class principal extends javax.swing.JFrame {
      */
     public principal() {
         initComponents();
-        JOptionPane.showMessageDialog(this, "Bienvenido! Como funciona el programa:\nSelecciona un archivo de texto para que el programa lea\n"
+       /* JOptionPane.showMessageDialog(this, "Bienvenido! Como funciona el programa:\nSelecciona un archivo de texto para que el programa lea\n"
                 + "1)Archivos de Texto grandes le tomara mas de un par de minutos en analizar\n"
                 + "2)Toma todas las palabras del texto y las cuenta\n"
                 + "3)Toma las combinaciones de dos palabras en una linea y las cuenta\n"
                 + "4)Toma las combinaciones de tres palabras en una linea y las cuenta\n"
                 + "5)Toma las 10 palabras mas repetidas para sacar el top ten\n"
                 + "Todo esto lo muestra en tablas para ver los resultados."
-                + "Tip: Usar Archivos de Texto de tamaño moderado para mejor funcionamiento");
+                + "Tip: Usar Archivos de Texto de tamaño moderado para mejor funcionamiento");*/
 
     }
 
@@ -268,41 +268,43 @@ public class principal extends javax.swing.JFrame {
                     word nueva = new word(sc.next(), 0);
                     one.add(nueva);
                     arraydos.add(nueva);
-                    
+
                 }
-                
+
                 for (int i = 0; i < arraydos.size(); i++) {
                     for (int j = 0; j < arraydos.size(); j++) {
-                        if(i==j){
-                            
-                        }else{
+                        if (i == j) {
+
+                        } else {
                             String word = arraydos.get(i).getWord() + " " + arraydos.get(j).getWord();
-                            two.add(new word(word,1));
-                        }
-                    }
-                }
-                
-                for (int i = 0; i < two.size(); i++) {
-                    for (int j = 0; j < two.size(); j++) {
-                        if(i==j){
+                            if(i==j-1){
+                            two.add(new word(word, 0,true));
+                                
+                            }else{
+                            two.add(new word(word, 0));
+                                
+                            }
                             
-                        }else{
-                            String temp = two.get(i).getWord();
-                            Scanner sc2 = new Scanner(temp);
-                            while(sc2.hasNext()){
-                                String word1 = sc2.next();
-                                String word2 = sc2.next();
-                                temp = word2 + " " + word1;
-                            }
-                            if(two.get(j).getWord().equals(two.get(i).getWord()) || two.get(j).equals(temp)){
-                                two.get(i).setCount(two.get(i).getCount()+1);
-                                two.remove(j);
-                                j--;
+                        }
+                    }
+                }
+               
+                for (int i = 0; i < arraydos.size(); i++) {
+                    for (int j = 0; j < arraydos.size(); j++) {
+                        for (int k = 0; k < arraydos.size(); k++) {
+                            if(i==j||i==k||j==k||(i==j&&j==k)){
+                                
+                            }else{
+                                String word = arraydos.get(i) + " " + arraydos.get(j) + " " + arraydos.get(k); 
+                                if(i==j-1 && j==k-1){
+                                    three.add(new word(word, 0,true));
+                                }else{
+                                    three.add(new word(word, 0));
+                                }
                             }
                         }
                     }
                 }
-                
 
             }
 
@@ -314,13 +316,42 @@ public class principal extends javax.swing.JFrame {
             BR.close();
             FR.close();
         } catch (Exception e) {
-
+ 
         }
+            
+                for (int i = 0; i < two.size(); i++) {
+                          System.out.println(two.get(i).getWord());  
+                    for (int j = 0; j < two.size(); j++) {
+                        
+                        if (i == j) {
+
+                        } else {
+                            String temp = two.get(i).getWord();
+                            Scanner sc2 = new Scanner(temp);
+                            while (sc2.hasNext()) {
+                                String word1 = sc2.next();
+                                String word2 = sc2.next();
+                                temp = word2 + " " + word1;
+                            }
+                            if (two.get(j).getWord().equals(two.get(i).getWord()) || (two.get(j).getWord().equals(temp)&&two.get(j).isAlapar())) {
+                                //System.out.println(two.get(j).getWord()  + "== " + two.get(i).getWord() + "(" +two.get(i).getCount() + ")"+ " -----s " + two.get(j).getWord()+"==" + temp);
+                                two.get(i).setCount(two.get(i).getCount() + 1);
+                                two.remove(j);
+                                j=0;
+                                i=0;
+                            }
+                        }
+                    }
+                }
+                
+                
         ArrayList<word> contuno = one;
         contuno = contar(contuno, contuno);
         
         text((contuno), (DefaultTableModel) ta_una.getModel());
-        
+        for (int i = 0; i < two.size(); i++) {
+                    two.get(i).setCount(two.get(i).getCount());
+                }
         text((two), (DefaultTableModel) ta_dos.getModel());
         text((three), (DefaultTableModel) ta_tres.getModel());
         topten();
@@ -328,11 +359,10 @@ public class principal extends javax.swing.JFrame {
         System.out.println(two);
     }//GEN-LAST:event_jButton1MouseClicked
 
-    public void doswords(){
-        
+    public void doswords() {
+
     }
-    
-    
+
     public void topten() {
 
         for (int i = 0; i < one.size(); i++) {
@@ -355,8 +385,6 @@ public class principal extends javax.swing.JFrame {
         }
         one = nueva;
     }
-
-    
 
     public ArrayList<word> contar(ArrayList<word> n, ArrayList<word> m) {
         for (int i = 0; i < n.size(); i++) {
